@@ -1,0 +1,22 @@
+Задание 1
+SELECT
+    c.login AS "Логин курьера",
+    COUNT(o.id) AS "Количество заказов в доставке"
+FROM
+    "Couriers" c
+LEFT JOIN
+    "Orders" o ON c.id = o."courierId" AND o."inDelivery" = TRUE
+GROUP BY
+    c.login
+ORDER BY
+    "Количество заказов в доставке";
+
+Задание 2 
+SELECT track,
+       CASE
+           WHEN finished = TRUE THEN 2
+           WHEN cancelled = TRUE THEN -1
+           WHEN "inDelivery"= TRUE THEN 1
+           ELSE 0
+       END
+FROM "Orders";
